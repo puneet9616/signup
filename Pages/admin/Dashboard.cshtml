@@ -1,0 +1,94 @@
+@page
+@model dotproject.Pages.Dashboard
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container d-flex align-items-center justify-content-center" 
+     
+    <!-- Background Overlay -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
+
+    <div class="row" style="position: relative; z-index: 2;">
+
+        
+        <div class="col-md-4" style="position: relative; right: 150px; top: 100px;">
+            <div class="text-white" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 10px;">
+                <h2>Product Actions</h2>
+                <div class="mb-2">
+                     <a href="/ProductPage" class="btn btn-primary" style="width: 100%;">Add Product</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="text-white" style="padding: 20px; border-radius: 10px;">
+                <h2 class="mt-4">Admin Dashboard</h2>
+
+                <div class="table-responsive text-white">
+                    <table class="table table-striped table-bordered" style="z-index: 3; position: relative;">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Contact</th>
+                                <th>Gender</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                                <th>Images</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model.UserData)
+                            {
+                                <tr>
+                                    <td>@user.Username</td>
+                                    <td>@user.Email</td>
+                                    <td>@user.contact</td>
+                                    <td>@user.gender</td>
+                                    <td>
+                                        <span class="badge @(user.Isactive == 1 ? "bg-success" : "bg-danger")">
+                                            @(user.Isactive == 1 ? "Active" : "Inactive")
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <form method="post" asp-page-handler="ToggleUserStatus" style="display:inline;">
+                                            <input type="hidden" name="userId" value="@user.id" />
+                                            <button type="submit" class="btn @(user.Isactive == 1 ? "btn-danger" : "btn-success")" style="border-radius: 20px; position: relative; left: 40px; bottom: 5px; right: 5px;">
+                                                @(user.Isactive == 1 ? "Disable" : "Enable")
+                                            </button>
+                                        </form>
+
+                                        <form method="post" asp-page-handler="DeleteUser" style="display:inline;">
+                                            <input type="hidden" name="userId" value="@user.id" />
+                                            <button type="submit" class="btn btn-danger" style="position: relative; right: 6px; border-radius: 20px; padding: 10px;" onclick="return confirm('Are you sure you want to delete this user?');">
+                                                Delete
+                                            </button>
+                                        </form>
+
+                                        <form method="post" asp-page="/editpage" asp-route-id="@user.id" style="display:inline;">
+                                            <button type="submit" class="btn btn-warning" style="position: relative; left: 10px; border-radius: 20px;">
+                                                Edit
+                                            </button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(user.Profileimage))
+                                        { 
+                                            <img src="~/profileimage/@user.Profileimage" alt="Profile Image" style="width: 100px; height: auto; " />
+                                        }
+                                        else
+                                        {
+                                            <span>No Image</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

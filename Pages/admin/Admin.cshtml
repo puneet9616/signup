@@ -1,0 +1,32 @@
+@page
+@model dotproject.Pages.Admin
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<div class="container d-flex align-items-center justify-content-center" 
+     style="min-height: 100vh; background-image: url('/images/IMG_7707.JPG'); background-size: cover; background-position: center;">
+    <div class="row">
+        <div class="col text-white" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+            <h1>Welcome to Admin page</h1>
+        </div>
+        <div class="col text-white" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+            <h2>Admin</h2>
+            <form method="post" asp-page-handler="Signup">
+                <div class="form-group">
+                    <label asp-for="AdminUser.Username"></label>
+                    <input type="text" class="form-control" asp-for="AdminUser.Username" required />
+                    <span asp-validation-for="AdminUser.Username" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="AdminUser.Password"></label>
+                    <input type="password" class="form-control" asp-for="AdminUser.Password" required />
+                    <span asp-validation-for="AdminUser.Password" class="text-danger"></span>
+                </div>
+               
+                <button type="submit" class="btn btn-primary" style="position: relative; top: 20px;">Signup</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+﻿@page
+@model MyRazorApp.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+<div class="container d-flex align-items-center justify-content-center" 
+     style="min-height: 100vh; background-image: url('/images/IMG_7707.JPG'); background-size: cover; background-position: center;">
+    <div class="row">
+        <div class="col text-white" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+            <h1>Welcome to Sign Up Page</h1>
+        </div>
+        <div class="col text-white" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+            <h2>Signup</h2>
+            <form method="post" asp-page-handler="Signup" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="NewUser.Username"></label>
+                    <input type="text" class="form-control" asp-for="NewUser.Username" required />
+                    <span asp-validation-for="NewUser.Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NewUser.Email"></label>
+                    <input type="email" class="form-control" asp-for="NewUser.Email" required />
+                    <span asp-validation-for="NewUser.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NewUser.Password"></label>
+                    <input type="password" class="form-control" asp-for="NewUser.Password" required />
+                    <span asp-validation-for="NewUser.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NewUser.ConfirmPassword"></label>
+                    <input type="password" class="form-control" asp-for="NewUser.ConfirmPassword" required />
+                    <span asp-validation-for="NewUser.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NewUser.contact"></label>
+                    <input type="text" class="form-control" asp-for="NewUser.contact" required />
+                    <span asp-validation-for="NewUser.contact" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NewUser.Profileimage"></label>
+                    <input type="file" class="form-control" asp-for="NewUser.Profileimage" required />
+                    <span asp-validation-for="NewUser.Profileimage" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NewUser.gender"></label>
+                    <input type="text" class="form-control" asp-for="NewUser.gender" required />
+                    <span asp-validation-for="NewUser.gender" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary" style="position: relative; top: 20px;">Signup</button>
+            </form>
+        </div>
+    </div>
+</div>

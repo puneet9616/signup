@@ -1,0 +1,43 @@
+@page
+@model dotproject.Pages.LoginPageModel
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+<h2>Login</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+
+
+
+
+<div class="container d-flex align-items-center justify-content-center" 
+     style="min-height: 100vh; background-image: url('/images/IMG_7707.JPG'); background-size: cover; background-position: center;">
+    <div class="row">
+        <div class="col text-white" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+            <h1>Welcome to Login Up Page</h1>
+        </div>
+        <div class="col text-white" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+            <h2>Login</h2>
+            <form method="post">
+    <div class="form-group">
+        <label asp-for="Ob.Username"></label>
+        <input asp-for="Ob.Username" class="form-control" required />
+        <span asp-validation-for="Ob.Username" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Ob.Password"></label>
+        <input asp-for="Ob.Password" type="password" class="form-control" required />
+        <span asp-validation-for="Ob.Password" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary" style="position: relative; top: 10px;">Login</button>
+</form>
+        </div>
+    </div>
+</div>

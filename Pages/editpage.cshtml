@@ -1,0 +1,33 @@
+@page
+@model dotproject.Pages.editpage
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+    <form method="post" asp-route-id="@Model.edit.id">
+        <div class="form-group">
+            <label asp-for="edit.Username"></label>
+            <input type="text" class="form-control" asp-for="edit.Username" required />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="edit.Email"></label>
+            <input type="email" class="form-control" asp-for="edit.Email" required />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="edit.contact"></label>
+            <input type="text" class="form-control" asp-for="edit.contact" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="edit.gender"></label>
+            <input type="text" class="form-control" asp-for="edit.gender" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>

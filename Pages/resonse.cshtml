@@ -1,0 +1,21 @@
+@page
+@model dotproject.Pages.resonse
+@{
+    ViewData["Title"] = "resonse";
+}
+
+<div class="container"  style="min-height: 100vh; background-color: rgb(181, 205, 205); background-size: cover; background-position: center;">
+    <h2>Hi, @TempData["name"]</h2>
+   
+    <p>Click the button below to go to the login page.</p>
+    <button id="loginButton" class="btn btn-primary" asp-for="@TempData["Page"]">@TempData["Click"]</button>
+</div>
+
+
+@section Scripts {
+    <script>
+        document.getElementById("loginButton").onclick = function () {
+            window.location.href = '@Url.Page("/loginpage")'; 
+        };
+    </script>
+}

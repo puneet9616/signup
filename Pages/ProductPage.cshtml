@@ -1,0 +1,55 @@
+@page
+@model dotproject.Pages.ProductPage
+@{
+    ViewData["Title"] = "Product Page";
+}
+
+<div class="container">
+    <div class="row d-flex align-items-start justify-content-center">
+
+       
+        <div class="col-md-4" style="position: relative; padding: 20px;">
+            <div class="text-white" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 10px;">
+                <h2>Product Actions</h2>
+                <div class="mb-2">
+                    <a href="/AddProduct" class="btn btn-primary" style="width: 100%;">Add Card</a>
+                </div>
+                <div class="mb-2">
+                    <a href="/Admin" class="btn btn-primary" style="width: 100%;">Admin</a>
+                </div>
+            </div>
+        </div>
+
+      
+        <div class="col-md-8" style="padding: 20px;">
+            <div class="text-white" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 10px;">
+                <h2 class="mt-4">Admin Dashboard</h2>
+                
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered text-white">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Category</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var product in Model.Products) // Assuming Model.Products contains the product list
+                            {
+                                <tr>
+                                    <td>@product.ProductName</td>
+                                    <td>@product.Price.ToString("C")</td> <!-- Formats as currency -->
+                                    <td>@product.Category</td>
+                                    <td>@product.Quantity</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
